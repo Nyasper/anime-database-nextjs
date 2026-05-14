@@ -1,7 +1,10 @@
-export default async function AnimePage({params}:params ){
+import { getMediaInfoByID } from "@/aniListAPI"
+import CharactersList from "@/app/animes/all/[order]/[animeID]/charactersList"
+import MediaInfo from "@/app/animes/all/[order]/[animeID]/mediaInfo"
+import { animeOrder } from "@/interfaces"
 
-    const {mangaID} = params 
-    const {order} = params
+export default async function AnimePage({params}:PageProps ){
+    const {mangaID, order} = await params 
     const {Page} = await getMediaInfoByID(mangaID,1)
     const animeCharactersPages = [
       await getMediaInfoByID(mangaID,1),
@@ -38,15 +41,9 @@ export default async function AnimePage({params}:params ){
     )
   }
 
-  interface params {
-    params:{
+  interface PageProps {
+    params: Promise<{
       order:animeOrder,
       mangaID:number
-    }
+    }>
 }
-
-
-import { getMediaInfoByID } from "@/aniListAPI"
-import CharactersList from "@/app/animes/all/[order]/[animeID]/charactersList"
-import MediaInfo from "@/app/animes/all/[order]/[animeID]/mediaInfo"
-import { animeOrder } from "@/interfaces"

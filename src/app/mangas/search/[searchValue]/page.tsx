@@ -1,5 +1,8 @@
-export default async function searchValue({params}:params){
-  const {searchValue} = params
+import MangasList from "../../all/mangasList"
+import { getMediaBySearch } from "@/aniListAPI"
+
+export default async function searchValue({params}:PageProps){
+  const {searchValue} = await params
   const Mangas = await getMediaBySearch(searchValue.replaceAll('%20',' '),"MANGA",1,50)
   return(
     <>  
@@ -8,10 +11,8 @@ export default async function searchValue({params}:params){
   )
 }
 
-interface params {
-  params: {
+interface PageProps {
+  params: Promise<{
     searchValue:string
-  }
+  }>
 }
-import MangasList from "../../all/mangasList"
-import { getMediaBySearch } from "@/aniListAPI"

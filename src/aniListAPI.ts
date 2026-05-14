@@ -1,8 +1,9 @@
-//DOCUMENTATION : https://anilist.github.io/ApiV2-GraphQL-Docs/
-const url = 'https://graphql.anilist.co'
+//DOCUMENTATION : 'https://docs.anilist.co/guide/introduction'
+const apiUrl = 'https://graphql.anilist.co'
+
 //Media = Anime or Manga
-export async function getAllMedia( type:Type , page:number , perPage:number , order:animeOrder):Promise<getAllAnimesQuery> {
-const query =`
+export async function getAllMedia(type: Type, page: number, perPage: number, order: animeOrder): Promise<getAllAnimesQuery> {
+  const query = `
 query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType , $isAdult : Boolean ){
   Page (page: $page, perPage: $perPage) {
     pageInfo {
@@ -19,9 +20,7 @@ query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType
       season,
       seasonYear,
       status,
-      popularity,
       episodes,
-      popularity,
       coverImage{
       large
       }
@@ -29,34 +28,34 @@ query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType
   }
 }`
 
-const variables = {
-  page,
-  perPage, //max 50
-  order,
-  type,
-  isAdult:false
-};
+  const variables = {
+    page,
+    perPage, //max 50
+    order,
+    type,
+    isAdult: false
+  };
 
-// Define the config we'll need for our Api request
-const options = {
-  method: 'POST',
-  headers: {
+
+  const options = {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       query: query,
       variables: variables
-  })
-    };
+    })
+  };
 
-const res = await fetch(url, options)
-const {data} = await res.json() 
+  const res = await fetch(apiUrl, options)
+  const { data } = await res.json()
   return data
 }
 
-export async function getMediaBySearch(search:FormDataEntryValue|null , type:Type , page:number, perPage:number):Promise<getAllAnimesQuery>{
-  const query =`
+export async function getMediaBySearch(search: FormDataEntryValue | null, type: Type, page: number, perPage: number): Promise<getAllAnimesQuery> {
+  const query = `
 query ( $page: Int, $perPage: Int , $search: String , $type : MediaType ,$isAdult : Boolean ){
   Page (page: $page, perPage: $perPage) {
     pageInfo {
@@ -77,9 +76,7 @@ query ( $page: Int, $perPage: Int , $search: String , $type : MediaType ,$isAdul
       season,
       seasonYear,
       status,
-      popularity,
       episodes,
-      popularity,
       genres,
       isAdult,
       bannerImage,
@@ -91,36 +88,36 @@ query ( $page: Int, $perPage: Int , $search: String , $type : MediaType ,$isAdul
   }
 }`
 
-const variables = {
-  page,
-  perPage, //max 50
-  type,
-  search,
-  isAdult:false
-};
+  const variables = {
+    page,
+    perPage, //max 50
+    type,
+    search,
+    isAdult: false
+  };
 
-// Define the config we'll need for our Api request
-const options = {
-  method: 'POST',
-  headers: {
+  // Define the config we'll need for our Api request
+  const options = {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       query: query,
       variables: variables
-  })
-    };
+    })
+  };
 
-const res = await fetch(url, options)
-const {data} = await res.json() 
+  const res = await fetch(apiUrl, options)
+  const { data } = await res.json()
   return data
 }
 
 
 
-export async function getMediaInfoByID(id:number,pageNumber:number):Promise<getAnimeInfoByAnimeIdQuery>{
-  const query =`
+export async function getMediaInfoByID(id: number, pageNumber: number): Promise<getAnimeInfoByAnimeIdQuery> {
+  const query = `
   query ($id: Int, $page: Int, $perPage: Int  ){
     Page (page: $page, perPage: $perPage) {
       pageInfo {
@@ -141,11 +138,9 @@ export async function getMediaInfoByID(id:number,pageNumber:number):Promise<getA
         season,
         seasonYear,
         status,
-        popularity,
         episodes,
         chapters,
         volumes,
-        popularity,
         genres,
         bannerImage,
         coverImage{
@@ -161,35 +156,35 @@ export async function getMediaInfoByID(id:number,pageNumber:number):Promise<getA
       }
     }
   }`
-  
 
-const variables = {
-  id,
-  page:1
-};
 
-// Define the config we'll need for our Api request
-const options = {
-  method: 'POST',
-  headers: {
+  const variables = {
+    id,
+    page: 1
+  };
+
+  // Define the config we'll need for our Api request
+  const options = {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       query: query,
       variables: variables
-  })
+    })
 
 
-}
-const res = await fetch(url, options)
-const {data} = await res.json() 
+  }
+  const res = await fetch(apiUrl, options)
+  const { data } = await res.json()
   return data
 }
 
 
-export async function getCharacterInfoByID(id:number):Promise<getCharacterInfoByIDQuery>{
-  const query =`
+export async function getCharacterInfoByID(id: number): Promise<getCharacterInfoByIDQuery> {
+  const query = `
   query ( $id: Int ){
         Character( id : $id ){
             id,
@@ -203,25 +198,25 @@ export async function getCharacterInfoByID(id:number):Promise<getCharacterInfoBy
         }
   }`
 
-const variables = {
-  id
-};
+  const variables = {
+    id
+  };
 
-// Define the config we'll need for our Api request
-const options = {
-  method: 'POST',
-  headers: {
+  // Define the config we'll need for our Api request
+  const options = {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       query: query,
       variables: variables
-  })
+    })
 
-}
-const res = await fetch(url, options)
-const {data} = await res.json() 
+  }
+  const res = await fetch(apiUrl, options)
+  const { data } = await res.json()
   return data
 }
 /*
@@ -241,13 +236,13 @@ query ( $search: String ){
 */
 
 
-interface getCharacterInfoByIDQuery{
-  Character:characterQuery
+interface getCharacterInfoByIDQuery {
+  Character: characterQuery
 }
 
-export async function getAllCharacters(order:animeOrder):Promise<getAllCharactersInterface> {
-  const query =`
-  query ($type : MediaType , $page: Int, $perPage: Int ,  ){
+export async function getAllCharacters(order: animeOrder): Promise<getAllCharactersInterface> {
+  const query = `
+  query ($type : MediaType , $page: Int, $perPage: Int ){
     Page (page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -271,33 +266,33 @@ export async function getAllCharacters(order:animeOrder):Promise<getAllCharacter
       }
     }
   }`
-  
 
-const variables = {
-  type: 'ANIME',
-  page:1,
-  perPage:5
-};
 
-// Define the config we'll need for our Api request
-const options = {
-  method: 'POST',
-  headers: {
+  const variables = {
+    type: 'ANIME',
+    page: 1,
+    perPage: 5
+  };
+
+  // Define the config we'll need for our Api request
+  const options = {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-  },
-  body: JSON.stringify({
+    },
+    body: JSON.stringify({
       query: query,
       variables: variables
-  })
+    })
 
 
-}
-const res = await fetch(url, options)
-const {data} = await res.json() 
+  }
+  const res = await fetch(apiUrl, options)
+  const { data } = await res.json()
   return data
 }
 
 
 
-import {  getAllAnimesQuery , getAnimeInfoByAnimeIdQuery , characterQuery , animeOrder , getAllCharactersInterface , characterOrder, Type } from "./interfaces";
+import { getAllAnimesQuery, getAnimeInfoByAnimeIdQuery, characterQuery, animeOrder, getAllCharactersInterface, characterOrder, Type } from "./interfaces";

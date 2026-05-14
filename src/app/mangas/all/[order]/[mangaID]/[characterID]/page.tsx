@@ -1,5 +1,9 @@
-export default async function CharacterPage({params}:params){
-  const {characterID} = params
+import CharacterInfo from "@/app/animes/all/[order]/[animeID]/[characterID]/characterInfo"
+import Image from "next/image"
+import { getCharacterInfoByID } from "@/aniListAPI"
+
+export default async function CharacterPage({params}:PageProps){
+  const {characterID} = await params
   const {Character} = await getCharacterInfoByID(characterID)
   return (
     <div className="flex flex-row p-1 bg-blue-950 w-11/12 mx-auto my-28 rounded-xl border max-h-[70vh]">
@@ -13,13 +17,8 @@ export default async function CharacterPage({params}:params){
   )
 }
 
-
-interface params{
-  params:{
+interface PageProps{
+  params: Promise<{
     characterID:number
-  }
+  }>
 }
-
-import CharacterInfo from "@/app/animes/all/[order]/[animeID]/[characterID]/characterInfo"
-import Image from "next/image"
-import { getCharacterInfoByID } from "@/aniListAPI"

@@ -1,5 +1,9 @@
-export default async function CharacterPage({params}:params){
-  const {characterID} = params
+import CharacterInfo from "./characterInfo"
+import Image from "next/image"
+import { getCharacterInfoByID } from "@/aniListAPI"
+
+export default async function CharacterPage({params}:PageProps){
+  const {characterID} = await params
   const {Character} = await getCharacterInfoByID(characterID)
   console.log(Character)
   return (
@@ -14,13 +18,8 @@ export default async function CharacterPage({params}:params){
   )
 }
 
-
-interface params{
-  params:{
+interface PageProps{
+  params: Promise<{
     characterID:number
-  }
+  }>
 }
-
-import CharacterInfo from "./characterInfo"
-import Image from "next/image"
-import { getCharacterInfoByID } from "@/aniListAPI"

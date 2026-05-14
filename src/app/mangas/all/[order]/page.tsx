@@ -1,14 +1,20 @@
-export default async function MangaListPage({params}:params){
+import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
+import { getAllMedia } from "@/aniListAPI"
+import MangasList from "../mangasList"
+import Pagination from "@/app/animes/all/[order]/pagination"
 
-  const order:animeOrder = params.order.split('-')[0] as animeOrder
-  const page = parseInt(params.order.split('-')[1])
+export default async function MangaListPage({params}:PageProps){
+
+  const { order: orderRaw } = await params;
+  const order:animeOrder = orderRaw.split('-')[0] as animeOrder
+  const page = parseInt(orderRaw.split('-')[1])
 
   //el slice muesta solo 20 personajes de ese anime
   // const paginasTotales = Math.ceil(characters.length/5)
   //muestra las paginas totales para todos los personajes de ese anime
 
   const Mangas:getAllAnimesQuery = await getAllMedia('MANGA',page,50,order)
-  const pageInfo = Mangas.Page.pageInfo
+  const pageInfoObj = Mangas.Page.pageInfo
 
   if (Mangas.Page){
     return (
@@ -19,12 +25,12 @@ export default async function MangaListPage({params}:params){
           title={`Order by: ${order}`}
         />
         <Pagination 
-          currentPage={pageInfo.currentPage} 
-          lastPage={pageInfo.lastPage} 
-          perPage={pageInfo.perPage} 
-          hasNextPage={pageInfo.hasNextPage} 
-          total={pageInfo.total} 
-          order={order}
+          currentPage={pageInfoObj.currentPage} 
+          lastPage={pageInfoObj.lastPage} 
+          perPage={pageInfoObj.perPage} 
+          hasNextPage={pageInfoObj.hasNextPage} 
+          total={pageInfoObj.total} 
+          order={orderRaw as animeOrder}
         />
       </div>
     )
@@ -33,16 +39,9 @@ export default async function MangaListPage({params}:params){
   )
 }
 
-
-interface params {
-  params:{
-    order:animeOrder,
+interface PageProps {
+  params: Promise<{
+    order:string,
     page:pageInfo
-  }
+  }>
 }
-
-
-import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
-import { getAllMedia } from "@/aniListAPI"
-import MangasList from "../mangasList"
-import Pagination from "@/app/animes/all/[order]/pagination"
