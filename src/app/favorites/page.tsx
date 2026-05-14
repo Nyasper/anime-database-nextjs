@@ -41,5 +41,5 @@ export default function Favorites(){
 import { useEffect , useState } from "react"
 import Image from "next/image";
 import Link from "next/link";
-import FavoriteButton from "../animes/all/[order]/[animeID]/favoriteButton";
+import FavoriteButton from "@/app/components/FavoriteButton";
 import { Anime  } from "@/interfaces";

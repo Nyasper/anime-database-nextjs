@@ -1,7 +1,8 @@
 import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
 import { getAllMedia } from "@/aniListAPI"
-import MangasList from "../mangasList"
-import Pagination from "@/app/animes/all/[order]/pagination"
+import MediaList from "@/app/components/MediaList"
+import Pagination from "@/app/components/Pagination"
+import { redirect } from "next/navigation"
 
 export default async function MangaListPage({params}:PageProps){
 
@@ -9,9 +10,11 @@ export default async function MangaListPage({params}:PageProps){
   const order:animeOrder = orderRaw.split('-')[0] as animeOrder
   const page = parseInt(orderRaw.split('-')[1])
 
-  //el slice muesta solo 20 personajes de ese anime
-  // const paginasTotales = Math.ceil(characters.length/5)
-  //muestra las paginas totales para todos los personajes de ese anime
+  async function search(formData: FormData) {
+    'use server'
+    const searchValue = formData.get('search')
+    redirect(`/mangas/search/${searchValue}`)
+  }
 
   const Mangas:getAllAnimesQuery = await getAllMedia('MANGA',page,50,order)
   const pageInfoObj = Mangas.Page.pageInfo
@@ -19,10 +22,13 @@ export default async function MangaListPage({params}:PageProps){
   if (Mangas.Page){
     return (
       <div className="flex flex-col items-center justify-center pb-10">
-        <MangasList
-          getAllMangas={Mangas}
+        <MediaList
+          data={Mangas}
           order={order}
           title={`Order by: ${order}`}
+          baseRoute="/mangas"
+          searchAction={search}
+          fallbackImage="/media-image.jpg"
         />
         <Pagination 
           currentPage={pageInfoObj.currentPage} 

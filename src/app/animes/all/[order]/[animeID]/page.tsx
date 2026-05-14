@@ -1,6 +1,6 @@
 import { getMediaInfoByID } from "@/aniListAPI"
-import CharactersList from "./charactersList"
-import MediaInfo from "./mediaInfo"
+import CharactersList from "@/app/components/CharactersList"
+import MediaInfo from "@/app/components/MediaInfo"
 import { animeOrder } from "@/interfaces"
 
 export default async function AnimePage({params}:PageProps ){

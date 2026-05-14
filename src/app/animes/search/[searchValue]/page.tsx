@@ -1,12 +1,20 @@
-import AnimeList from "../../all/[order]/animesList"
+import MediaList from "@/app/components/MediaList"
 import { getMediaBySearch } from "@/aniListAPI"
+import search from "../../all/[order]/search"
 
 export default async function searchValue({params}:PageProps){
   const {searchValue} = await params
   const Animes = await getMediaBySearch(searchValue.replaceAll('%20',' '),'ANIME',1,50)
   return(
     <>  
-    <AnimeList getAllAnimes={Animes} order="POPULARITY_DESC" title={`Search results for: ${searchValue.replaceAll('%20',' ')}`} />
+    <MediaList 
+      data={Animes} 
+      order="POPULARITY_DESC" 
+      title={`Search results for: ${searchValue.replaceAll('%20',' ')}`}
+      baseRoute="/animes"
+      searchAction={search}
+      fallbackImage="/cover-image.png"
+    />
     </>
   )
 }

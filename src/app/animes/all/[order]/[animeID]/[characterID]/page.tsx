@@ -1,4 +1,4 @@
-import CharacterInfo from "./characterInfo"
+import CharacterInfo from "@/app/components/CharacterInfo"
 import Image from "next/image"
 import { getCharacterInfoByID } from "@/aniListAPI"
 
