@@ -38,7 +38,7 @@ const links:linkInterface[] = [
 ]
   return(
     <nav className="pb-3">     
-      <ul className={menuActived?"flex flex-col w-screen gap-2 py-1 px-10 sm:pb-10  items-center bg-blue-950 fixed z-40 top-100 left-0 border rounded-xl sm:rounded-b-full":"flex justify-start w-full gap-8 p-4 items-center sm:bg-blue-950 fixed z-40 top-0 sm:rounded-b-full max-sm:max-w-screen-sm max-sm:bg-blue-950 sm:shadow-md max-sm:h-16 sm:shadow-gray-950 max-sm:shadow-sm"}>
+      <ul className={menuActived?"flex flex-col w-screen gap-2 py-1 px-10 sm:pb-10  items-center glass fixed z-40 top-100 left-0 border rounded-xl sm:rounded-b-full":"flex justify-start w-full gap-8 p-4 items-center sm:glass fixed z-40 top-0 sm:rounded-b-full max-sm:max-w-screen-sm max-sm:glass sm:shadow-md max-sm:h-16 sm:shadow-gray-950 max-sm:shadow-sm"}>
         <li><HamburguerMenu click={clickMenu} state={menuActived} /></li>
         <li className="ml-20 max-sm:hidden">LOGO</li>
         <li className={menuActived?"fixed top-5 left-12 ml-6":"ml-6"}><Link href={'/'}>HOME</Link></li>
@@ -47,7 +47,7 @@ const links:linkInterface[] = [
               <span className="w-0 h-0 cursor-pointer border-t-[6px] border-b-[6px] border-r-[8px]  border-b-transparent border-t-transparent border-r-white -rotate-90 absolute left-max ml-2    mt-2">
               </span>
             </span>
-            <ul className={menuActived?"transition group-hover:block relative left-0 mt-2 bg-blue-950 rounded-xl shadow-2xl":"hidden transition group-hover:block absolute left-0 mt-2 bg-blue-950 rounded-xl shadow-2xl"}>
+            <ul className={menuActived?"transition group-hover:block relative left-0 mt-2 glass rounded-xl shadow-2xl":"hidden transition group-hover:block absolute left-0 mt-2 glass rounded-xl shadow-2xl"}>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/animes/search'}>Search Animes</Link></li>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/animes/all/TITLE_ROMAJI-1'}>list animes by name</Link></li>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/animes/all/POPULARITY_DESC-1'}>list animes by popularity</Link></li>
@@ -59,7 +59,7 @@ const links:linkInterface[] = [
               <span className="w-0 h-0 cursor-pointer border-t-[6px] border-b-[6px] border-r-[8px]  border-b-transparent border-t-transparent border-r-white -rotate-90 absolute left-max ml-2 mt-2">
               </span>
             </span>
-            <ul className={menuActived?"transition group-hover:block relative left-0 mt-2 bg-blue-950 rounded-xl shadow-2xl":"hidden transition group-hover:block absolute left-0 mt-2 bg-blue-950 rounded-xl shadow-2xl"}>
+            <ul className={menuActived?"transition group-hover:block relative left-0 mt-2 glass rounded-xl shadow-2xl":"hidden transition group-hover:block absolute left-0 mt-2 glass rounded-xl shadow-2xl"}>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/mangas/search'}>Search Mangas</Link></li>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/mangas/all/TITLE_ROMAJI-1'}>list mangas by name</Link></li>
               <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/mangas/all/POPULARITY_DESC-1'}>list mangas by popularity</Link></li>

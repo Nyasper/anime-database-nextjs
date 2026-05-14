@@ -1,3 +1,15 @@
+import './globals.css'
+import type { Metadata } from 'next'
+import { Outfit } from 'next/font/google'
+import Navbar from './navbar'
+
+const outfit = Outfit({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Anime Database',
+  description: 'A modern database for animes and mangas',
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -6,26 +18,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-b from-slate-900 to-slate-950 pt-16 min-h-screen`}>
+      <body className={`${outfit.className} pt-16 min-h-screen`}>
         <Navbar />
         {children}
-        </body>
+      </body>
     </html>
   )
 }
-
-
-
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Anime Database',
-  description: '',
-}
-
-//Components
-import Navbar from './navbar'

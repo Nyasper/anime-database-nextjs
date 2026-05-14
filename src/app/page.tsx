@@ -5,7 +5,7 @@ export default function Home() {
   const switchLang = ()=> setLang(!lang)
 
 return lang ? (
-<div className="flex flex-col flex-wrap p-8 bg-blue-950 w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
+<div className="flex flex-col flex-wrap p-8 glass w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
   <div className="my-8 flex">
     <h1 className="text-4xl text-sky-400 mx-auto gap-4">Welcome to my App</h1>
     <button onClick={switchLang} className="flex items-center gap-2 mt-2">EN
@@ -38,7 +38,7 @@ return lang ? (
 )
 : 
 (
-  <div className="flex flex-col flex-wrap p-8 bg-blue-950 w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
+  <div className="flex flex-col flex-wrap p-8 glass w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
   <div className="my-8 flex">
     <h1 className="text-4xl text-sky-400 mx-auto gap-4">Bienvenido a mi Aplicación</h1>
     <button onClick={switchLang} className="flex items-center gap-3 mt-2">ES

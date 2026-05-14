@@ -12,7 +12,7 @@ export default function Favorites(){
 
 
   return favorites.length ? (
-    <div className="flex flex-col items-center px-8 py-4 bg-blue-950 w-11/12 mx-auto my-28 rounded-xl">
+    <div className="flex flex-col items-center px-8 py-4 glass w-11/12 mx-auto my-28 rounded-xl">
       <h2 className="text-4xl text-center py-2 mb-8">Favorites</h2>
       <ul className="flex flex-wrap justify-center items-start gap-10 mt-8 mb-8 rounded-xl">
       {favorites.map(fav=>(
@@ -31,7 +31,7 @@ export default function Favorites(){
     </ul>
     </div>
   ) : (
-    <div className="flex flex-col items-center p-10 gap-4 bg-blue-950 w-max mx-auto my-28 rounded-xl">
+    <div className="flex flex-col items-center p-10 gap-4 glass w-max mx-auto my-28 rounded-xl">
       <h2 className="py-2 text-3xl text-red-500">No Favorites Added</h2>
       <Link className="bg-sky-400 px-4 p-1 ml-2 rounded-md text-xl" href={'/animes/all/POPULARITY_DESC-1'}>Click to Start</Link>
     </div>

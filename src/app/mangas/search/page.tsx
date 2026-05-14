@@ -17,7 +17,7 @@ export default async function mangaPages(){
 ]
 
   return (
-    <div className="flex flex-col px-8 py-4 bg-blue-950 w-max mx-auto md:my-28 rounded-xl max-sm:w-full">
+    <div className="flex flex-col px-8 py-4 glass w-max mx-auto md:my-28 rounded-xl max-sm:w-full">
     <h1 className="text-2xl p-1 mb-4" >Search Manga:</h1>
     <SearchFormComponent action={searchM} />
     <h2 className="text-lg mt-5">List manga by:</h2>

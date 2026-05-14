@@ -20,7 +20,7 @@ for (let i = props.currentPage+1; i <= Math.min(props.currentPage + pageShow/2, 
   }
 }
   return (
-    <ul className="flex gap-8 justify-center py-4 px-8 text-xl lg:w-11/12 max-lg:gap-4 max-sm:2 bg-blue-950 mx-auto md:rounded-xl  max-md:m-0">
+    <ul className="flex gap-8 justify-center py-4 px-8 text-xl lg:w-11/12 max-lg:gap-4 max-sm:2 glass mx-auto md:rounded-xl  max-md:m-0">
       <li><Link href={`./${props.order}-1`} >First</Link></li>
       <li><Link href={`./${props.order}-${props.currentPage-1}`} className="text-lg">{"<"}</Link></li>
       {pageNumbers.map((pageNumber)=>(
