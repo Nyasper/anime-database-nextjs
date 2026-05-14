@@ -1,6 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+
+  --animate-my-anim: my-anim 6s linear infinite;
+
+  @keyframes my-anim {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+  }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -25,3 +39,4 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
