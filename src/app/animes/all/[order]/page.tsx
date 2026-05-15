@@ -22,7 +22,7 @@ export default async function AnimePage({ params }: PageProps) {
   return Animes ? (
     <div className="flex flex-col items-center justify-center pb-10">
       <MediaList
-        data={Animes}
+        data={Animes.Page.media}
         order={order}
         title={formatOrderString(order)}
         baseRoute="/animes"

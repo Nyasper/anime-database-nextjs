@@ -14,7 +14,7 @@ export default async function searchValue({ params }: PageProps) {
   return (
     <>
       <MediaList
-        data={Animes}
+        data={Animes.Page.media}
         order="POPULARITY_DESC"
         title={`Search results for: ${searchValue.replaceAll('%20', ' ')} (${formatOrderString('POPULARITY_DESC')})`}
         baseRoute="/animes"

@@ -1,112 +1,108 @@
 'use client';
+import { useState } from 'react';
+
+const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sky-400 hover:text-sky-300 transition-colors inline-flex items-center gap-1 group/link font-bold"
+  >
+    {children}
+    <svg className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  </a>
+);
+
 export default function Home() {
   const [lang, setLang] = useState(true); //false = 'Spanish' true = 'English'
 
   const switchLang = () => setLang(!lang);
 
-  return lang ? (
-    <div className="flex flex-col flex-wrap p-8 glass w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
-      <div className="my-8 flex">
-        <h1 className="text-4xl text-sky-400 mx-auto gap-4">
-          Welcome to my App
-        </h1>
-        <button onClick={switchLang} className="flex items-center gap-2 mt-2">
-          EN
-          <img src="english.svg" alt="USAFlag" width={40} height={40} />
-        </button>
+  const content = lang ? {
+    title: "Welcome to my App",
+    intro: (
+      <>
+        My third project is an application developed with Next.js, which connects to the{' '}
+        <ExternalLink href="https://anilist.co/home">AniList</ExternalLink>{' '}
+        website API using the GraphQL query language to obtain detailed information about a wide variety of animes and mangas.
+      </>
+    ),
+    featuresTitle: "Application Features:",
+    features: [
+      "Exploring various information about animes and mangas, including release dates, descriptions, chapter counts, genres, and popularity.",
+      "Integrated Search Bar: Allows users to search for any anime or manga present in the AniList database.",
+      "Favorites Section: Users can save their favorites to Local Storage, ensuring persistence across sessions."
+    ],
+    langBtn: "EN",
+    flag: "english.svg"
+  } : {
+    title: "Bienvenido a mi Aplicación",
+    intro: (
+      <>
+        Mi tercer proyecto es una aplicación desarrollada con Next.js, la cual se conecta a la API del sitio web{' '}
+        <ExternalLink href="https://anilist.co/home">AniList</ExternalLink>{' '}
+        utilizando GraphQL para obtener información detallada sobre una amplia variedad de animes y mangas.
+      </>
+    ),
+    featuresTitle: "Funcionalidades destacadas:",
+    features: [
+      "Exploración de información diversa sobre animes y mangas, incluyendo fechas de estreno, descripciones, recuento de capítulos y géneros.",
+      "Barra de búsqueda integrada: Permite buscar cualquier título presente en la base de datos de AniList.",
+      "Sección de Favoritos: Guarda tus animes y mangas preferidos en Local Storage para acceder a ellos en futuras visitas."
+    ],
+    langBtn: "ES",
+    flag: "spanish.svg"
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[75vh] px-4 py-20">
+      <div className="relative w-full max-w-7xl">
+        {/* Decorative background glow */}
+        <div className="absolute -inset-4 bg-gradient-to-r from-sky-500/10 to-indigo-500/10 rounded-[3rem] blur-3xl pointer-events-none" />
+
+        <div className="relative glass p-8 md:p-16 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-3xl bg-slate-900/60 overflow-hidden animate-in fade-in zoom-in duration-1000">
+
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
+            <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-white via-sky-200 to-indigo-200 bg-clip-text text-transparent tracking-tighter">
+              {content.title}
+            </h1>
+
+            <button
+              onClick={switchLang}
+              className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+            >
+              <span className="font-bold text-sky-400">{content.langBtn}</span>
+              <img src={content.flag} alt="Flag" width={30} height={30} className="rounded-sm shadow-sm group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
+
+          <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-12 opacity-90 font-medium">
+            {content.intro}
+          </p>
+
+          <div className="space-y-8">
+            <h2 className="text-2xl font-bold text-sky-400 flex items-center gap-3">
+              <span className="w-8 h-[1px] bg-sky-400/50" />
+              {content.featuresTitle}
+            </h2>
+
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {content.features.map((feature, i) => (
+                <li key={i} className="flex gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-sky-500/30 transition-colors group">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-sky-500/20 flex items-center justify-center text-sky-400 text-xs font-black">
+                    {i + 1}
+                  </span>
+                  <p className="text-slate-400 text-sm md:text-base leading-relaxed group-hover:text-slate-200 transition-colors">
+                    {feature}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-
-      <p className="my-4">
-        My third project is an application developed with Next.js, which
-        connects to the{' '}
-        <a
-          href="https://anilist.co/home"
-          className="text-sky-500 font-medium underline"
-        >
-          Anilist
-        </a>{' '}
-        website API using the GraphQL query language to obtain detailed
-        information about a wide variety of animes and mangas stored in its
-        database.
-      </p>
-
-      <h2 className="text-2xl font-medium py-2 text-sky-500">
-        Features of the application:
-      </h2>
-
-      <ul className="pb-12">
-        <li className="list-disc py-2">
-          Exploring various information about animes and mangas available in the
-          API database, including release dates, descriptions, chapter counts,
-          genres, popularity, as well as specific details about each character.
-        </li>
-
-        <li className="list-disc py-2">
-          Integrated Search Bar: Allows users to search for any anime or manga
-          present in the AniList database.
-        </li>
-
-        <li className="list-disc py-2">
-          Favorites Section: Users can add their favorite anime or manga to a
-          favorites section. These favorites are stored in Local Storage, which
-          guarantees that the information persists even if the user temporarily
-          leaves the page, thus facilitating access to their preferred content
-          on future visits.
-        </li>
-      </ul>
-    </div>
-  ) : (
-    <div className="flex flex-col flex-wrap p-8 glass w-11/12 mx-auto mt-28 py-6 rounded-xl text-xl text-blue-300">
-      <div className="my-8 flex">
-        <h1 className="text-4xl text-sky-400 mx-auto gap-4">
-          Bienvenido a mi Aplicación
-        </h1>
-        <button onClick={switchLang} className="flex items-center gap-3 mt-2">
-          ES
-          <img src="spanish.svg" alt="SpainFlag" width={38} height={40} />
-        </button>
-      </div>
-
-      <p className="my-4">
-        Mi tercer proyecto es una aplicación desarrollada con Next.js, la cual
-        se conecta a la API del sitio web{' '}
-        <a
-          href="https://anilist.co/home"
-          className="text-sky-500 font-medium underline"
-        >
-          Anilist
-        </a>{' '}
-        utilizando el lenguaje de consultas GraphQL para obtener información
-        detallada sobre una amplia variedad de animes y mangas almacenados en su
-        base de datos.
-      </p>
-
-      <h2 className="text-2xl font-medium py-2 text-sky-500">
-        Funcionalidades destacadas de la aplicación:
-      </h2>
-
-      <ul className="pb-12">
-        <li className="list-disc py-2">
-          Exploración de información diversa sobre animes y mangas disponibles
-          en la base de datos de la API, incluyendo fechas de estreno,
-          descripciones, recuento de capítulos, géneros, popularidad, así como
-          detalles específicos sobre cada personaje.
-        </li>
-
-        <li className="list-disc py-2">
-          Barra de búsqueda integrada: Permite a los usuarios buscar cualquier
-          anime o manga presente en la base de datos de AniList.
-        </li>
-
-        <li className="list-disc py-2">
-          Sección de Favoritos: Los usuarios pueden agregar sus animes o mangas
-          preferidos a una sección de favoritos. Estos favoritos se almacenan en
-          el Local Storage, lo que garantiza que la información persista incluso
-          si el usuario abandona temporalmente la página, facilitando así el
-          acceso a sus contenidos preferidos en futuras visitas.
-        </li>
-      </ul>
     </div>
   );
 }
-import { useState } from 'react';

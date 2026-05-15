@@ -23,7 +23,7 @@ export default async function MangaListPage({ params }: PageProps) {
     return (
       <div className="flex flex-col items-center justify-center pb-10">
         <MediaList
-          data={Mangas}
+          data={Mangas.Page.media}
           order={order}
           title={formatOrderString(orderRaw)}
           baseRoute="/mangas"
