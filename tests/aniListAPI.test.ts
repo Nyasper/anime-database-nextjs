@@ -1,5 +1,5 @@
 import { expect, test, describe } from "bun:test";
-import { getAllMedia, getMediaBySearch, getMediaInfoByID, getCharacterInfoByID, getAllCharacters } from "../src/aniListAPI";
+import { getAllMedia, getMediaBySearch, getMediaInfoByID, getCharacterInfoByID, getAllCharacters } from "../src/app/utils/aniListAPI";
 
 describe("AniList API", () => {
   test("getAllMedia should return data", async () => {

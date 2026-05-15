@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "bun test"
+    "test": "bun test",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\""
   },
   "dependencies": {
     "next": "^16.2.6",
@@ -23,7 +24,10 @@
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "^16.2.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "postcss": "latest",
+    "prettier": "^3.8.3",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

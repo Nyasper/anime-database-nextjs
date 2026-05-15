@@ -1,24 +1,29 @@
-import CharacterInfo from "@/app/components/CharacterInfo"
-import Image from "next/image"
-import { getCharacterInfoByID } from "@/aniListAPI"
+import CharacterInfo from '@/app/components/CharacterInfo';
+import Image from 'next/image';
+import { getCharacterInfoByID } from '@/app/utils/aniListAPI';
 
-export default async function CharacterPage({params}:PageProps){
-  const {characterID} = await params
-  const {Character} = await getCharacterInfoByID(characterID)
+export default async function CharacterPage({ params }: PageProps) {
+  const { characterID } = await params;
+  const { Character } = await getCharacterInfoByID(characterID);
   return (
     <div className="flex flex-row p-1 glass w-11/12 mx-auto my-28 rounded-xl border max-h-[70vh]">
       <div className=" m-8">
         <h2 className="text-5xl min-w-max">{Character.name.full}</h2>
-        <Image className="mx-auto my-6" src={Character.image.large} width={300} height={360} alt={`${Character.name.full} image`}/>
+        <Image
+          className="mx-auto my-6"
+          src={Character.image.large}
+          width={300}
+          height={360}
+          alt={`${Character.name.full} image`}
+        />
       </div>
-        <CharacterInfo props={Character} />
-      </div>
-
-  )
+      <CharacterInfo props={Character} />
+    </div>
+  );
 }
 
-interface PageProps{
+interface PageProps {
   params: Promise<{
-    characterID:number
-  }>
+    characterID: number;
+  }>;
 }

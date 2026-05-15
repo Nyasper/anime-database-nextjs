@@ -1,17 +1,22 @@
-import { pageInfo, animeOrder, getAllAnimesQuery } from "@/interfaces"
-import { getAllMedia } from "@/aniListAPI"
-import MediaList from "@/app/components/MediaList"
-import Pagination from "@/app/components/Pagination"
-import DefaultNotFound from "./defaultNotFound"
-import search from "./search"
+import { pageInfo, animeOrder, getAllAnimesQuery } from '@/app/utils/types';
+import { getAllMedia } from '@/app/utils/aniListAPI';
+import MediaList from '@/app/components/MediaList';
+import Pagination from '@/app/components/Pagination';
+import DefaultNotFound from './defaultNotFound';
+import search from './search';
+import { formatOrderString } from '@/app/utils/formatters';
 
 export default async function AnimePage({ params }: PageProps) {
-
   const { order } = await params;
   const orderParam = order.split('-')[0] as animeOrder;
   const page = parseInt(order.split('-')[1]);
 
-  const Animes: getAllAnimesQuery = await getAllMedia("ANIME", page, 50, orderParam);
+  const Animes: getAllAnimesQuery = await getAllMedia(
+    'ANIME',
+    page,
+    50,
+    orderParam
+  );
   const pageInfo = Animes.Page.pageInfo;
 
   return Animes ? (
@@ -19,7 +24,7 @@ export default async function AnimePage({ params }: PageProps) {
       <MediaList
         data={Animes}
         order={order}
-        title={`Order by: ${order}`}
+        title={formatOrderString(order)}
         baseRoute="/animes"
         searchAction={search}
         fallbackImage="/cover-image.png"
@@ -35,15 +40,11 @@ export default async function AnimePage({ params }: PageProps) {
     </div>
   ) : (
     <DefaultNotFound />
-  )
+  );
 }
 
 interface PageProps {
   params: Promise<{
-    order: animeOrder,
-    page: pageInfo
-  }>
-
-
-
+    order: string;
+  }>;
 }

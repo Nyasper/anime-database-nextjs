@@ -1,4 +1,4 @@
-export default async function animeRedirect(){
-redirect('/animes/search')
+export default async function animeRedirect() {
+  redirect('/animes/search');
 }
-import { redirect } from "next/navigation";
+import { redirect } from 'next/navigation';
