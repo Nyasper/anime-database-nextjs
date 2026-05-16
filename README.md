@@ -3,7 +3,7 @@
 
   ## English
 
-My third project is an application developed with Next.js, which connects to the AniList website API ("https://anilist.co/home") using the GraphQL query language to obtain detailed information about a wide variety of animes and mangas stored in its database.
+This is an application developed with the framework Next.js, which connects to the AniList website API ("https://anilist.co/home") using the GraphQL query language to obtain detailed information about a wide variety of animes and mangas stored in its database.
 
 Features of the application:
 
@@ -13,10 +13,13 @@ Features of the application:
 
 • Favorites Section: Users can add their favorite anime or manga to a favorites section. These favorites are stored in Local Storage, which guarantees that the information persists even if the user temporarily leaves the page, thus facilitating access to their preferred content on future visits.  
 
+• Language Switcher: Features a global language toggle (English/Spanish) that translates the entire user interface and stores the user's preference in Local Storage for persistent localization.
+
+
 
 ## ESPAÑOL
 
-Mi tercer proyecto es una aplicación desarrollada con Next.js, la cual se conecta a la API del sitio web AniList ("https://anilist.co/home") utilizando el lenguaje de consultas GraphQL para obtener información detallada sobre una amplia variedad de animes y mangas almacenados en su base de datos.  
+Esta es una aplicación desarrollada con el framework Next.js, la cual se conecta a la API del sitio web AniList ("https://anilist.co/home") utilizando el lenguaje de consultas GraphQL para obtener información detallada sobre una amplia variedad de animes y mangas almacenados en su base de datos.  
 
 Funcionalidades destacadas de la aplicación:  
 
@@ -25,6 +28,9 @@ Funcionalidades destacadas de la aplicación:
 • Barra de búsqueda integrada: Permite a los usuarios buscar cualquier anime o manga presente en la base de datos de AniList.  
 
 • Sección de Favoritos: Los usuarios pueden agregar sus animes o mangas preferidos a una sección de favoritos. Estos favoritos se almacenan en el Local Storage, lo que garantiza que la información persista incluso si el usuario abandona temporalmente la página, facilitando así el acceso a sus contenidos preferidos en futuras visitas.  
+
+• Selector de Idiomas: Cuenta con un selector global de idioma (Inglés/Español) que traduce toda la interfaz de usuario y persiste la elección en Local Storage para mantener la localización en futuras visitas.
+
 
 
 ## SCREENSHOTS
