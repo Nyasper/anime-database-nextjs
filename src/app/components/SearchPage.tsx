@@ -1,11 +1,19 @@
+'use client';
 import SearchFormComponent from '@/app/animes/search/searchFormComponent';
-
+import { useLanguage } from '../context/LanguageContext';
 interface SearchPageProps {
   type: 'Anime' | 'Manga';
   searchAction: (formData: FormData) => Promise<void>;
 }
 
 export default function SearchPage({ type, searchAction }: SearchPageProps) {
+  const { lang } = useLanguage();
+
+  const textSearch = lang === 'en' ? `Search ${type}` : `Buscar ${type}`;
+  const textDesc = lang === 'en'
+    ? `Explore and discover your next favorite ${type.toLowerCase()} titles in our extensive database.`
+    : `Explora y descubre tus próximos ${type.toLowerCase()} favoritos en nuestra extensa base de datos.`;
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[75vh] w-full px-4 py-8 sm:py-12">
       <div className="relative w-full max-w-3xl">
@@ -23,11 +31,11 @@ export default function SearchPage({ type, searchAction }: SearchPageProps) {
             </span>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6 bg-linear-to-b from-white to-slate-400 bg-clip-text text-transparent tracking-tighter">
-              Search {type}
+              {textSearch}
             </h1>
 
             <p className="text-slate-400 text-lg md:text-xl font-medium mb-12 max-w-lg mx-auto leading-relaxed opacity-80">
-              Explore and discover your next favorite {type.toLowerCase()} titles in our extensive database.
+              {textDesc}
             </p>
 
             <div className="w-full max-w-xl mx-auto scale-105 md:scale-110">

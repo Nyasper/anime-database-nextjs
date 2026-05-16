@@ -1,9 +1,5 @@
 'use client';
-import { useState } from 'react';
-
-// TODO: add screenshots
-// TODO: remove unused code
-// TODO: improve code quality
+import { useLanguage } from './context/LanguageContext';
 
 const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <a
@@ -20,11 +16,9 @@ const ExternalLink = ({ href, children }: { href: string; children: React.ReactN
 );
 
 export default function Home() {
-  const [lang, setLang] = useState(true); //false = 'Spanish' true = 'English'
+  const { lang, switchLang } = useLanguage();
 
-  const switchLang = () => setLang(!lang);
-
-  const content = lang ? {
+  const content = lang === 'en' ? {
     title: "Welcome to my Anime/Manga Library App",
     intro: (
       <>
@@ -75,7 +69,7 @@ export default function Home() {
 
             <button
               onClick={switchLang}
-              className={`flex items-center gap-3 ${lang ? 'px-4' : 'pl-4 pr-7'} py-2 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer`}
+              className={`flex items-center gap-3 ${lang === 'en' ? 'px-4' : 'pl-4 pr-7'} py-2 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer`}
             >
               <span className="font-bold text-sky-400">{content.langBtn}</span>
               <img

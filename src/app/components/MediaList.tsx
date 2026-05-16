@@ -1,4 +1,7 @@
+'use client';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
+import { formatOrderString } from '@/app/utils/formatters';
 import Link from 'next/link';
 import { Anime, animeOrder } from '@/app/utils/types';
 import SearchFormComponent from '@/app/animes/search/searchFormComponent';
@@ -23,11 +26,18 @@ export default function MediaList({
   fallbackImage = '/cover-image.png',
   className = "sm:mt-12 mb-8"
 }: Props) {
+  const { lang } = useLanguage();
+  
+  // Si el título es el mismo que el generado por defecto en inglés a partir del order,
+  // lo re-traducimos con el idioma actual. Si no, usamos el título proporcionado (ej. "Tus Favoritos").
+  const isOrderTitle = order && title === formatOrderString(order, 'en');
+  const displayTitle = isOrderTitle ? formatOrderString(order, lang) : title;
+
   return (
     <div className={`flex flex-col xl:p-8 glass w-11/12 max-xl:w-full mx-auto ${className} xl:rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-3xl bg-slate-900/60 overflow-hidden`}>
       <div className="flex flex-col sm:flex-row w-full items-center justify-between gap-6 px-6 sm:px-12 py-8 border-b border-white/5 mb-4">
         <h2 className="text-3xl sm:text-4xl text-glow font-black tracking-tighter bg-linear-to-b from-white to-slate-400 bg-clip-text">
-          {title}
+          {displayTitle}
         </h2>
         {searchAction && (
           <div className="w-full sm:max-w-sm">

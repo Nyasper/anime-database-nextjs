@@ -1,6 +1,7 @@
 import CharacterInfo from '@/app/components/CharacterInfo';
 import Image from 'next/image';
 import { getCharacterInfoByID } from '@/app/utils/aniListAPI';
+import ClientAgeBadge from './ClientAgeBadge';
 
 interface CharacterDetailsPageProps {
   characterID: number;
@@ -53,9 +54,7 @@ export default async function CharacterDetailsPage({ characterID }: CharacterDet
               </span>
             )}
             {Character.age && (
-              <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase tracking-widest">
-                Age: {Character.age?.replace(/-$/, '')}
-              </span>
+              <ClientAgeBadge age={Character.age} />
             )}
           </div>
         </div>

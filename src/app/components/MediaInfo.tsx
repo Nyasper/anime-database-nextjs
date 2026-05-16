@@ -1,4 +1,18 @@
-export default async function MediaInfo(props: props) {
+'use client';
+import { useLanguage } from '../context/LanguageContext';
+
+export default function MediaInfo(props: props) {
+  const { lang } = useLanguage();
+  
+  const textInfo = lang === 'en' ? 'Anime Information' : 'Información del Anime';
+  const textFormat = lang === 'en' ? 'Format:' : 'Formato:';
+  const textSeason = lang === 'en' ? 'Season:' : 'Temporada:';
+  const textStatus = lang === 'en' ? 'Status:' : 'Estado:';
+  const textEpisodes = lang === 'en' ? 'Episodes:' : 'Episodios:';
+  const textChapters = lang === 'en' ? 'Chapters:' : 'Capítulos:';
+  const textVolumes = lang === 'en' ? 'Volumes:' : 'Volúmenes:';
+  const textGenres = lang === 'en' ? 'Genres:' : 'Géneros:';
+  const textPopularity = lang === 'en' ? 'Popularity:' : 'Popularidad:';
   return (
     <>
       <div className="w-full h-max p-2 mt-6 sm:mt-12 mb-6">
@@ -23,47 +37,47 @@ export default async function MediaInfo(props: props) {
         </div>
       </div>
       <div className="glass-glow p-8 xl:w-11/12 mx-auto h-max mb-12 rounded-2xl">
-        <h3 className="text-3xl font-bold mb-6 text-glow">Anime Information</h3>
+        <h3 className="text-3xl font-bold mb-6 text-glow">{textInfo}</h3>
         <ul className="flex flex-col text-lg my-2 gap-3 font-light">
           {props.Page.media[0].format ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Format:</span>{' '}
+              <span className="font-semibold text-sky-400">{textFormat}</span>{' '}
               {props.Page.media[0].format}
             </li>
           ) : null}
           {props.Page.media[0].season ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Season:</span>{' '}
+              <span className="font-semibold text-sky-400">{textSeason}</span>{' '}
               {props.Page.media[0].season} {props.Page.media[0].seasonYear}
             </li>
           ) : null}
           {props.Page.media[0].status ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Status:</span>{' '}
+              <span className="font-semibold text-sky-400">{textStatus}</span>{' '}
               {props.Page.media[0].status}
             </li>
           ) : null}
           {props.Page.media[0].episodes ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Episodes:</span>{' '}
+              <span className="font-semibold text-sky-400">{textEpisodes}</span>{' '}
               {props.Page.media[0].episodes}
             </li>
           ) : null}
           {props.Page.media[0].chapters ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Chapters:</span>{' '}
+              <span className="font-semibold text-sky-400">{textChapters}</span>{' '}
               {props.Page.media[0].chapters}
             </li>
           ) : null}
           {props.Page.media[0].volumes ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Volumes:</span>{' '}
+              <span className="font-semibold text-sky-400">{textVolumes}</span>{' '}
               {props.Page.media[0].volumes}
             </li>
           ) : null}
           {props.Page.media[0].genres ? (
             <li className="flex items-center gap-2 flex-wrap">
-              <span className="font-semibold text-sky-400 mr-2">Genres:</span>{' '}
+              <span className="font-semibold text-sky-400 mr-2">{textGenres}</span>{' '}
               {props.Page.media[0].genres.map((genre) => (
                 <Link
                   href={`/${props.Page.media[0].type.toLowerCase()}s/genre/${genre}`}
@@ -77,7 +91,7 @@ export default async function MediaInfo(props: props) {
           ) : null}
           {props.Page.media[0].popularity ? (
             <li className="flex items-center gap-2">
-              <span className="font-semibold text-sky-400">Popularity:</span>{' '}
+              <span className="font-semibold text-sky-400">{textPopularity}</span>{' '}
               {props.Page.media[0].popularity}
             </li>
           ) : null}

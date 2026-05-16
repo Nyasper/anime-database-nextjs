@@ -38,9 +38,7 @@
   .text-glow {
     text-shadow: 0 0 8px var(--color-glow);
   }
-  .bg-gradient-main {
-    background-image: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary), var(--color-primary));
-  }
+
 }
 
 :root {

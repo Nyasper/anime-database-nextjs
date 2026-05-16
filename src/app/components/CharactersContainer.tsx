@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getMediaInfoByID } from '@/app/utils/aniListAPI';
 import { getAnimeInfoByAnimeIdQuery } from '@/app/utils/types';
 import CharactersList from './CharactersList';
+import { useLanguage } from '../context/LanguageContext';
 
 interface Props {
   mediaID: number;
@@ -38,10 +39,13 @@ export default function CharactersContainer({
     fetchPages();
   }, [mediaID]);
 
+  const { lang } = useLanguage();
+  const textLoading = lang === 'en' ? 'Loading Characters...' : 'Cargando Personajes...';
+
   return loading ? (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <div className="w-12 h-12 border-4 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-xl text-glow font-medium">Loading Characters...</p>
+      <p className="text-xl text-glow font-medium">{textLoading}</p>
     </div>
   ) : (
     <div className="animate-in fade-in duration-700">

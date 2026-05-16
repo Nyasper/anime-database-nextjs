@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import Link from 'next/link';
 import { title, Type } from '@/app/utils/types';
 
@@ -23,22 +25,47 @@ const InfoItem = ({ label, value }: InfoItemProps) => {
 
 export default function CharacterInfo({ props }: CharacterInfoProps) {
   const { name, gender, age, dateOfBirth, siteUrl, description, media } = props;
+  const { lang } = useLanguage();
+
+  const t = lang === 'en' ? {
+    firstName: 'First Name',
+    lastName: 'Last Name',
+    nativeName: 'Native Name',
+    gender: 'Gender',
+    age: 'Age',
+    dateOfBirth: 'Date of Birth',
+    anilistUrl: 'Anilist URL',
+    viewOnAnilist: 'View on AniList',
+    biography: 'Biography',
+    appearsIn: 'Appears in'
+  } : {
+    firstName: 'Nombre',
+    lastName: 'Apellido',
+    nativeName: 'Nombre Original',
+    gender: 'Género',
+    age: 'Edad',
+    dateOfBirth: 'Fecha de Nacimiento',
+    anilistUrl: 'URL de Anilist',
+    viewOnAnilist: 'Ver en AniList',
+    biography: 'Biografía',
+    appearsIn: 'Aparece en'
+  };
 
   return (
     <div className="flex flex-col gap-6 w-full animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-        <InfoItem label="First Name" value={name.first} />
-        <InfoItem label="Last Name" value={name.last} />
-        <InfoItem label="Native Name" value={name.native} />
-        <InfoItem label="Gender" value={gender} />
-        <InfoItem label="Age" value={age?.replace(/-$/, '')} />
+        <InfoItem label={t.firstName} value={name.first} />
+        <InfoItem label={t.lastName} value={name.last} />
+        <InfoItem label={t.nativeName} value={name.native} />
+        <InfoItem label={t.gender} value={gender} />
+        <InfoItem label={t.age} value={age?.replace(/-$/, '')} />
         <InfoItem
-          label="Date of Birth"
+          label={t.dateOfBirth}
           value={dateOfBirth.day ? `${dateOfBirth.day}/${dateOfBirth.month}` : null}
         />
         <div className="md:col-span-2">
           <InfoItem
-            label="Anilist URL"
+            label={t.anilistUrl}
             value={siteUrl ? (
               <a
                 href={siteUrl}
@@ -46,7 +73,7 @@ export default function CharacterInfo({ props }: CharacterInfoProps) {
                 rel="noopener noreferrer"
                 className="text-sky-400 hover:text-sky-300 transition-colors flex items-center gap-2 group/link w-max"
               >
-                View on AniList
+                {t.viewOnAnilist}
                 <svg className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
@@ -59,7 +86,7 @@ export default function CharacterInfo({ props }: CharacterInfoProps) {
       {description && (
         <div className="mt-4 p-8 rounded-4xl bg-white/3 border border-white/10 shadow-inner">
           <span className="text-sky-400 font-bold uppercase text-[10px] tracking-[0.3em] opacity-60 mb-6 block">
-            Biography
+            {t.biography}
           </span>
           <div
             className="text-slate-300 leading-relaxed prose prose-invert prose-sky max-w-none text-sm md:text-base font-normal character-description"
@@ -71,7 +98,7 @@ export default function CharacterInfo({ props }: CharacterInfoProps) {
       {media?.nodes && media.nodes.length > 0 && (
         <div className="mt-4">
           <span className="text-sky-400 font-bold uppercase text-[10px] tracking-[0.3em] opacity-60 mb-6 block">
-            Appears in
+            {t.appearsIn}
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {media.nodes.map((item) => (
