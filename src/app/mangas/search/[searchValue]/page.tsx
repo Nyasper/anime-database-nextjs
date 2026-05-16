@@ -5,6 +5,7 @@ import { formatOrderString } from '@/app/utils/formatters';
 
 export default async function searchValue({ params }: PageProps) {
   const { searchValue } = await params;
+  const decodedSearchValue = decodeURIComponent(searchValue);
 
   async function search(formData: FormData) {
     'use server';
@@ -13,7 +14,7 @@ export default async function searchValue({ params }: PageProps) {
   }
 
   const Mangas = await getMediaBySearch(
-    searchValue.replaceAll('%20', ' '),
+    decodedSearchValue,
     'MANGA',
     1,
     50
@@ -23,7 +24,7 @@ export default async function searchValue({ params }: PageProps) {
       <MediaList
         data={Mangas.Page.media}
         order="POPULARITY_DESC"
-        title={`Search results for: ${searchValue.replaceAll('%20', ' ')} (${formatOrderString('POPULARITY_DESC')})`}
+        title={`Search results for: ${decodedSearchValue} (${formatOrderString('POPULARITY_DESC')})`}
         baseRoute="/mangas"
         searchAction={search}
         fallbackImage="/media-image.jpg"

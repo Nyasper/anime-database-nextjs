@@ -1,11 +1,11 @@
 export default async function MediaInfo(props: props) {
   return (
     <>
-      <div className="w-full h-max p-2 mt-12 mb-6">
+      <div className="w-full h-max p-2 mt-6 sm:mt-12 mb-6">
         <h2 className="text-6xl max-md:text-4xl text-center font-bold text-glow tracking-tight">
           {props.Page.media[0].title.romaji}
         </h2>
-        <div className="relative mx-auto my-12 w-[800px] max-w-full rounded-2xl overflow-hidden glass-glow">
+        <div className="relative mx-auto my-12 w-200 max-w-full rounded-2xl overflow-hidden glass-glow">
           <Image
             className="w-full h-auto object-cover"
             src={
@@ -18,7 +18,7 @@ export default async function MediaInfo(props: props) {
             height={400}
             alt={`${props.Page.media[0].title.romaji} banner image`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b132b] to-transparent opacity-60"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-primary to-transparent opacity-60"></div>
         </div>
       </div>
       <div className="glass-glow p-8 xl:w-11/12 mx-auto h-max mb-12 rounded-2xl">

@@ -36,7 +36,7 @@ export default async function MangaListPage({ params }: PageProps) {
           perPage={pageInfoObj.perPage}
           hasNextPage={pageInfoObj.hasNextPage}
           total={pageInfoObj.total}
-          order={orderRaw as animeOrder}
+          order={order}
         />
       </div>
     );

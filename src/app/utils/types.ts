@@ -138,6 +138,16 @@ export interface characterQuery {
   };
   siteUrl: string;
   description: string;
+  media?: {
+    nodes: {
+      id: number;
+      title: title;
+      type: Type;
+      coverImage: {
+        medium: string;
+      };
+    }[];
+  };
 }
 
 export interface getAllCharactersInterface {

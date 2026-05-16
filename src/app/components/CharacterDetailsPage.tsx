@@ -34,7 +34,7 @@ export default async function CharacterDetailsPage({ characterID }: CharacterDet
           </div>
 
           <div className="mt-8 lg:mt-10 text-center">
-            <h1 className="text-3xl md:text-5xl font-black bg-gradient-to-b from-white to-slate-400 bg-clip-text text-transparent tracking-tighter leading-tight">
+            <h1 className="text-3xl md:text-5xl font-black bg-linear-to-b from-white to-slate-400 bg-clip-text text-transparent tracking-tighter leading-tight">
               {Character.name.full}
             </h1>
             {Character.name.native && (

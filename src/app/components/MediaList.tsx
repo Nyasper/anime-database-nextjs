@@ -21,46 +21,53 @@ export default function MediaList({
   baseRoute,
   searchAction,
   fallbackImage = '/cover-image.png',
-  className = "mt-28 mb-8"
+  className = "sm:mt-12 mb-8"
 }: Props) {
   return (
-    <div className={`flex flex-col flex-wrap xl:p-8 glass w-11/12 max-xl:w-full mx-auto max-lg:px-4 ${className} xl:rounded-xl max-sm:p-0 max-sm:rounded-none overflow-hidden`}>
-      <div className="flex w-full min-w-full max-md:text-sm justify-between px-12 max-lg:flex-col max-lg:py-1">
-        <h2 className="mt-5 text-4xl xl:text-center text-glow font-bold tracking-wide">
+    <div className={`flex flex-col xl:p-8 glass w-11/12 max-xl:w-full mx-auto ${className} xl:rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-3xl bg-slate-900/60 overflow-hidden`}>
+      <div className="flex flex-col sm:flex-row w-full items-center justify-between gap-6 px-6 sm:px-12 py-8 border-b border-white/5 mb-4">
+        <h2 className="text-3xl sm:text-4xl text-glow font-black tracking-tighter bg-linear-to-b from-white to-slate-400 bg-clip-text">
           {title}
         </h2>
-        {searchAction && <SearchFormComponent action={searchAction} />}
+        {searchAction && (
+          <div className="w-full sm:max-w-sm">
+            <SearchFormComponent action={searchAction} />
+          </div>
+        )}
       </div>
-      <ul className="flex flex-wrap lg:justify-center lg:items-start gap-10 mt-8 mb-8 xl:rounded-xl max-xl:grid max-xl:place-items-center max-xl:m-0 max-xl:p-0 max-xl:grid-cols-4 max-lg:grid-cols-4 max-sm:grid-cols-2 max-lg:place-items-center max-lg:w-full">
+      <ul className="flex flex-wrap justify-center items-start gap-4 sm:gap-10 p-4 sm:p-8">
         {data.map((media: Anime) => {
           const typeRoute = media.type === 'ANIME' ? '/animes' : '/mangas';
           const finalRoute = baseRoute || typeRoute;
-          
+
           return (
             <li
               key={media.id}
-              className="flex flex-col gap-3 items-center w-56 h-auto max-lg:w-40"
+              className="flex flex-col gap-2 sm:gap-3 items-center w-[44%] sm:w-48 lg:w-56 h-auto transition-all"
             >
               <span
-                className="h-12 flex items-center justify-center overflow-hidden text-center font-medium line-clamp-2 px-2 overflow-visible"
+                className="h-10 sm:h-12 flex items-center justify-center overflow-hidden text-center font-bold text-[10px] sm:text-sm line-clamp-2 px-1 text-slate-300 opacity-80"
                 title={media.title.romaji}
               >
                 {media.title.romaji}
               </span>
               <Link
-                className="w-56 h-80 relative max-lg:w-40 max-lg:h-72 glass-glow rounded-xl overflow-hidden group"
+                className="w-full aspect-2/3 relative glass-glow rounded-xl overflow-hidden group shadow-lg"
                 href={`${finalRoute}/all/${order}/${media.id}`}
               >
                 <Image
                   src={media.coverImage.large || fallbackImage}
                   fill
                   priority
-                  sizes="230"
+                  sizes="(max-width: 640px) 45vw, 230px"
                   alt={`${media.title.romaji} image`}
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
-              <FavoriteButton mediaInfo={media} />
+              <div className="w-full mt-1">
+                <FavoriteButton mediaInfo={media} />
+              </div>
             </li>
           );
         })}

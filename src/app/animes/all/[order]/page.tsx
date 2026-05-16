@@ -35,7 +35,7 @@ export default async function AnimePage({ params }: PageProps) {
         perPage={pageInfo.perPage}
         hasNextPage={pageInfo.hasNextPage}
         total={pageInfo.total}
-        order={order}
+        order={orderParam}
       />
     </div>
   ) : (

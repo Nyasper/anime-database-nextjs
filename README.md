@@ -1,4 +1,18 @@
 ## PROYECTO 3  - NEXTJS ANIME AND MANGA DATABASE 
+  
+
+  ## English
+
+My third project is an application developed with Next.js, which connects to the AniList website API ("https://anilist.co/home") using the GraphQL query language to obtain detailed information about a wide variety of animes and mangas stored in its database.
+
+Features of the application:
+
+• Exploring various information about animes and mangas available in the API database, including release dates, descriptions, chapter counts, genres, popularity, as well as specific details about each character.
+
+• Integrated Search Bar: Allows users to search for any anime or manga present in the AniList database.
+
+• Favorites Section: Users can add their favorite anime or manga to a favorites section. These favorites are stored in Local Storage, which guarantees that the information persists even if the user temporarily leaves the page, thus facilitating access to their preferred content on future visits.  
+
 
 ## ESPAÑOL
 
@@ -13,38 +27,24 @@ Funcionalidades destacadas de la aplicación:
 • Sección de Favoritos: Los usuarios pueden agregar sus animes o mangas preferidos a una sección de favoritos. Estos favoritos se almacenan en el Local Storage, lo que garantiza que la información persista incluso si el usuario abandona temporalmente la página, facilitando así el acceso a sus contenidos preferidos en futuras visitas.  
 
 
-## English
-
-My third project is an application developed with Next.js, which connects to the AniList website API ("https://anilist.co/home") using the GraphQL query language to obtain detailed information about a wide variety of animes and mangas stored in its database.
-
-Features of the application:
-
-• Exploring various information about animes and mangas available in the API database, including release dates, descriptions, chapter counts, genres, popularity, as well as specific details about each character.
-
-• Integrated Search Bar: Allows users to search for any anime or manga present in the AniList database.
-
-• Favorites Section: Users can add their favorite anime or manga to a favorites section. These favorites are stored in Local Storage, which guarantees that the information persists even if the user temporarily leaves the page, thus facilitating access to their preferred content on future visits.
-
 ## SCREENSHOTS
 
-HOME PAGE:   
+HOME PAGE:
 
-![page-home](/screenshots/home.jpeg)  
+![page-home](./screenshots/Home.png)
 
 ANIMES VIEW:
 
-![anime-view](/screenshots/list_animes.jpeg) 
+![anime-view](./screenshots/Anime-list.png)
 
-SEARCH ANIMES:  
+MANGAS VIEW:
 
-![page-home](/screenshots/search.jpeg)  
- 
-FAVORITES PAGE:   
+![manga-view](./screenshots/manga-list.png)
 
-![page-favorites](/screenshots/favorites.jpeg)  
+SEARCH ANIMES:
 
-RESPONSIVE DESIGN:   
+![search-view](./screenshots/Search-anime.png)
 
-![page-home-responsive](/screenshots/home_responsive.jpeg)   
+FAVORITES PAGE:
 
-![page-home-responsive](/screenshots/menu_responsibe.jpeg)  
+![page-favorites](./screenshots/Favorites.png)

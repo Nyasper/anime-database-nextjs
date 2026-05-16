@@ -204,7 +204,20 @@ export async function getCharacterInfoByID(
             image{ medium , large },
             dateOfBirth {day,month},
             description(asHtml: true),
-            siteUrl
+            siteUrl,
+            media {
+              nodes {
+                id
+                title {
+                  romaji
+                  english
+                }
+                type
+                coverImage {
+                  medium
+                }
+              }
+            }
         }
   }`;
 

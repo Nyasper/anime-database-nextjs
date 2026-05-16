@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import { title, Type } from '@/app/utils/types';
 
 interface InfoItemProps {
   label: string;
@@ -20,7 +22,7 @@ const InfoItem = ({ label, value }: InfoItemProps) => {
 };
 
 export default function CharacterInfo({ props }: CharacterInfoProps) {
-  const { name, gender, age, dateOfBirth, siteUrl, description } = props;
+  const { name, gender, age, dateOfBirth, siteUrl, description, media } = props;
 
   return (
     <div className="flex flex-col gap-6 w-full animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -55,7 +57,7 @@ export default function CharacterInfo({ props }: CharacterInfoProps) {
       </div>
 
       {description && (
-        <div className="mt-4 p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 shadow-inner">
+        <div className="mt-4 p-8 rounded-4xl bg-white/3 border border-white/10 shadow-inner">
           <span className="text-sky-400 font-bold uppercase text-[10px] tracking-[0.3em] opacity-60 mb-6 block">
             Biography
           </span>
@@ -63,6 +65,39 @@ export default function CharacterInfo({ props }: CharacterInfoProps) {
             className="text-slate-300 leading-relaxed prose prose-invert prose-sky max-w-none text-sm md:text-base font-normal character-description"
             dangerouslySetInnerHTML={{ __html: description }}
           />
+        </div>
+      )}
+
+      {media?.nodes && media.nodes.length > 0 && (
+        <div className="mt-4">
+          <span className="text-sky-400 font-bold uppercase text-[10px] tracking-[0.3em] opacity-60 mb-6 block">
+            Appears in
+          </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {media.nodes.map((item) => (
+              <Link
+                key={item.id}
+                href={`${item.type === 'ANIME' ? '/animes' : '/mangas'}/all/POPULARITY_DESC-1/${item.id}`}
+                className="flex items-center gap-4 p-4 rounded-3xl bg-white/3 border border-white/5 hover:border-sky-500/30 hover:bg-white/6 transition-all duration-300 group shadow-sm"
+              >
+                <div className="relative w-12 h-16 shrink-0 rounded-lg overflow-hidden shadow-md">
+                  <img
+                    src={item.coverImage.medium}
+                    alt={item.title.romaji}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-slate-200 font-bold text-sm line-clamp-1 group-hover:text-sky-400 transition-colors">
+                    {item.title.romaji || item.title.english}
+                  </span>
+                  <span className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mt-1 opacity-60">
+                    {item.type}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -90,5 +125,15 @@ interface CharacterInfoProps {
     };
     siteUrl: string;
     description: string;
+    media?: {
+      nodes: {
+        id: number;
+        title: title;
+        type: Type;
+        coverImage: {
+          medium: string;
+        };
+      }[];
+    };
   };
 }

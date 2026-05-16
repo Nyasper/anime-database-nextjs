@@ -5,8 +5,9 @@ import { formatOrderString } from '@/app/utils/formatters';
 
 export default async function searchValue({ params }: PageProps) {
   const { searchValue } = await params;
+  const decodedSearchValue = decodeURIComponent(searchValue);
   const Animes = await getMediaBySearch(
-    searchValue.replaceAll('%20', ' '),
+    decodedSearchValue,
     'ANIME',
     1,
     50
@@ -16,7 +17,7 @@ export default async function searchValue({ params }: PageProps) {
       <MediaList
         data={Animes.Page.media}
         order="POPULARITY_DESC"
-        title={`Search results for: ${searchValue.replaceAll('%20', ' ')} (${formatOrderString('POPULARITY_DESC')})`}
+        title={`Search results for: ${decodedSearchValue} (${formatOrderString('POPULARITY_DESC')})`}
         baseRoute="/animes"
         searchAction={search}
         fallbackImage="/cover-image.png"

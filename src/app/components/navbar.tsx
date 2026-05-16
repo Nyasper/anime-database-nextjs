@@ -32,13 +32,13 @@ export default function Navbar() {
   return (
     <>
       {/* Spacer so content is not hidden behind the fixed navbar initially */}
-      <div className="h-24 sm:h-28"></div>
+      <div className="h-20 sm:h-24"></div>
 
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl transition-all duration-300">
-        <div className="backdrop-blur-xl bg-slate-900/70 border border-white/10 shadow-2xl rounded-full px-6 py-3 flex items-center justify-center gap-8 text-slate-200 relative">
-          
+        <div className="sm:backdrop-blur-xl sm:bg-slate-900/70 sm:border border-white/10 sm:shadow-2xl rounded-full px-6 py-3 flex items-center justify-center gap-8 text-slate-200 relative">
+
           {/* Mobile Menu Button */}
-          <div className="sm:hidden flex items-center absolute left-6">
+          <div className="sm:hidden flex items-center absolute left-4 p-2 rounded-xl bg-white/5 border border-white/10 shadow-sm hover:bg-white/10 transition-all duration-300">
             <HamburguerMenu click={clickMenu} state={menuActived} />
           </div>
 
@@ -85,9 +85,9 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Favorites Button */}
-          <div className="flex items-center">
-            <Link href="/favorites" className="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2 rounded-full font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.7)] hover:scale-105 text-sm max-sm:text-xs max-sm:px-4">
+          {/* Favorites Button - Hidden on mobile, moved to hamburger menu */}
+          <div className="hidden sm:flex items-center">
+            <Link href="/favorites" className="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2 rounded-full font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(14,165,233,0.5)] hover:shadow-[0_0_25px_rgba(14,165,233,0.7)] hover:scale-105 text-sm">
               FAVORITES
             </Link>
           </div>
@@ -97,6 +97,7 @@ export default function Navbar() {
         <div className={`sm:hidden absolute top-full left-0 w-full pt-4 transition-all duration-300 origin-top ${menuActived ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}>
           <div className="backdrop-blur-2xl bg-slate-900/95 border border-white/10 rounded-3xl shadow-2xl p-5 flex flex-col gap-4 text-slate-200">
             <Link href="/" onClick={() => setMenuActived(false)} className="px-4 py-3 hover:bg-slate-800/80 rounded-xl transition-colors text-lg font-semibold tracking-wide">Home</Link>
+            <Link href="/favorites" onClick={() => setMenuActived(false)} className="mx-4 my-2 bg-sky-500 hover:bg-sky-400 text-white px-6 py-3 rounded-2xl font-bold tracking-wide transition-all shadow-[0_0_15px_rgba(14,165,233,0.4)] text-center">FAVORITES</Link>
 
             <div className="px-4 py-2">
               <div className="text-sky-400 font-extrabold mb-3 uppercase text-xs tracking-widest opacity-80">Animes</div>
