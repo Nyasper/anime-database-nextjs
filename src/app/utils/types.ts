@@ -70,7 +70,7 @@ export interface pageInfo {
   lastPage: number;
   hasNextPage: boolean;
   perPage: number;
-  order?: animeOrder; //opcional
+  order?: animeOrder;
 }
 
 //QUERIES
