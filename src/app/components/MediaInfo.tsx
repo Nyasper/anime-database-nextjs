@@ -14,6 +14,7 @@ export default async function MediaInfo(props: props) {
                 : '/cover-image.png'
             }
             priority
+            unoptimized
             width={800}
             height={400}
             alt={`${props.Page.media[0].title.romaji} banner image`}

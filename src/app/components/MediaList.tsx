@@ -59,6 +59,7 @@ export default function MediaList({
                   src={media.coverImage.large || fallbackImage}
                   fill
                   priority
+                  unoptimized
                   sizes="(max-width: 640px) 45vw, 230px"
                   alt={`${media.title.romaji} image`}
                   className="object-cover group-hover:scale-110 transition-transform duration-700"

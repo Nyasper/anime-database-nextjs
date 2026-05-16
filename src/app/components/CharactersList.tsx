@@ -20,6 +20,7 @@ export default function CharactersList(props: props) {
                 }
                 className="h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                 fill
+                unoptimized
                 sizes="230"
                 priority
                 alt={`${character.name.full} image`}

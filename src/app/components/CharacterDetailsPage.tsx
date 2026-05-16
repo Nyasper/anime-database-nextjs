@@ -26,6 +26,7 @@ export default async function CharacterDetailsPage({ characterID }: CharacterDet
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 src={Character.image.large}
                 fill
+                unoptimized
                 alt={`${Character.name.full} image`}
                 priority
                 sizes="(max-width: 768px) 100vw, 300px"
