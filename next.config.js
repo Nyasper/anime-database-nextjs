@@ -6,6 +6,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 's4.anilist.co',
       },
+      {
+        protocol: 'https',
+        hostname: '*.anilist.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'anilist.co',
+      },
     ],
   }
 }
