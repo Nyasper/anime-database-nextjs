@@ -69,7 +69,7 @@ export default function Home() {
 
             <button
               onClick={switchLang}
-              className={`flex items-center gap-3 ${lang === 'en' ? 'px-4' : 'pl-4 pr-7'} py-2 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer`}
+              className={`flex items-center w-fit gap-3 ${lang === 'en' ? 'px-5' : 'pl-4 pr-6'} py-2 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group cursor-pointer`}
             >
               <span className="font-bold text-sky-400">{content.langBtn}</span>
               <img
