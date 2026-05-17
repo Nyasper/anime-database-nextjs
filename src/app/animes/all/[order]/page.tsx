@@ -20,7 +20,7 @@ export default async function AnimePage({ params }: PageProps) {
   const pageInfo = Animes.Page.pageInfo;
 
   return Animes ? (
-    <div className="flex flex-col items-center justify-center pb-10">
+    <div className="flex flex-col items-center justify-center pb-3">
       <MediaList
         data={Animes.Page.media}
         order={order}

@@ -75,7 +75,7 @@ export default function Home() {
               <img
                 src={content.flag}
                 alt="Flag"
-                className="w-7 h-5 object-cover rounded-sm shadow-sm group-hover:scale-110 transition-transform"
+                className="w-7 h-5 object-cover rounded-sm shadow-sm grou-hover:scale-110 transition-transform"
               />
             </button>
           </div>

@@ -21,7 +21,7 @@ export default async function MangaListPage({ params }: PageProps) {
 
   if (Mangas.Page) {
     return (
-      <div className="flex flex-col items-center justify-center pb-10">
+      <div className="flex flex-col items-center justify-center pb-3">
         <MediaList
           data={Mangas.Page.media}
           order={order}

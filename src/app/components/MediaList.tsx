@@ -27,7 +27,7 @@ export default function MediaList({
   className = "sm:mt-12 mb-8"
 }: Props) {
   const { lang } = useLanguage();
-  
+
   // Si el título es el mismo que el generado por defecto en inglés a partir del order,
   // lo re-traducimos con el idioma actual. Si no, usamos el título proporcionado (ej. "Tus Favoritos").
   const isOrderTitle = order && title === formatOrderString(order, 'en');
