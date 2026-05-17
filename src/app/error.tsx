@@ -42,7 +42,7 @@ export default function Error({
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-4 w-full">
           <button
-            onClick={reset}
+            onClick={() => window.location.reload()}
             className="px-8 py-3 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all font-bold text-slate-200 cursor-pointer"
           >
             {texts.btnRetry}

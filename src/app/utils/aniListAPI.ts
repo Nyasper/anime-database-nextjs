@@ -53,6 +53,7 @@ query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType
       query: query,
       variables: variables,
     }),
+    next: { revalidate: 604800 }, // Caching the request for 1 week (604800 seconds) to reduce API load
   };
 
   const res = await fetch(apiUrl, options);
@@ -118,6 +119,7 @@ query ( $page: Int, $perPage: Int , $search: String , $type : MediaType ,$isAdul
       query: query,
       variables: variables,
     }),
+    next: { revalidate: 604800 }, // Caching the request for 1 week (604800 seconds) to reduce API load
   };
 
   const res = await fetch(apiUrl, options);
@@ -185,6 +187,7 @@ export async function getMediaInfoByID(
       query: query,
       variables: variables,
     }),
+    next: { revalidate: 604800 }, // Caching the request for 1 week (604800 seconds) to reduce API load
   };
   const res = await fetch(apiUrl, options);
   const { data } = await res.json();
@@ -236,6 +239,7 @@ export async function getCharacterInfoByID(
       query: query,
       variables: variables,
     }),
+    next: { revalidate: 604800 }, // Caching the request for 1 week (604800 seconds) to reduce API load
   };
   const res = await fetch(apiUrl, options);
   const { data } = await res.json();
@@ -307,6 +311,7 @@ export async function getAllCharacters(
       query: query,
       variables: variables,
     }),
+    next: { revalidate: 604800 }, // Caching the request for 1 week (604800 seconds) to reduce API load
   };
   const res = await fetch(apiUrl, options);
   const { data } = await res.json();
